@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styles from './Planets.css';
 import styled, { keyframes } from 'styled-components';
+import mars from './../mars.png';
+import saturn from './../saturn2.png';
 
 const rotate360 = keyframes`
   from {
@@ -21,15 +23,18 @@ const Planet = styled.div`
   animation: ${rotate360} ${props => (props.orbit ? props.orbit : '20s')} linear infinite;
 `;
 
+//background: #E77D11;
 const Mars = styled(Planet)`
   top: 30%;
   left: 30%;
   transform-origin: 220px 220px;
-  background: #E77D11;
+  background: url(${mars});
+  background-size: cover;
 `;
 
 const Pluto = styled(Planet)`
   background-color: #063A9E;
+  border-top: 70px;
   border: 0;
   width: 3rem;
   height: 3rem;
@@ -44,6 +49,17 @@ const Sun = styled(Planet)`
   border:0;
   top: 50%;
   left: 50%;
+`;
+
+const Saturn = styled.img`
+  width: 5rem;
+  height: 3rem;
+  display: inline-block;
+  position: absolute;
+  animation: ${rotate360} ${props => (props.orbit ? props.orbit : '20s')} linear infinite;
+  top: 40%;
+  left: 50%;
+  transform-origin: 120px 120px;
 `;
 
 const Space = styled.div`
@@ -61,7 +77,8 @@ class Planets extends Component {
     return (
       <Space>
         <Mars orbit="50s" />
-        <Pluto orbit="100s"/>
+        <Pluto orbit="100s" />
+        <Saturn src={saturn} orbit="200s" />
         <Sun />
       </Space>
     );
