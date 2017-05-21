@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styles from './Planets.css';
 import InfoPanel from './InfoPanel';
 import styled, { keyframes } from 'styled-components';
 import mars from './../mars.png';
