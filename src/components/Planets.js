@@ -4,6 +4,7 @@ import InfoPanel from './InfoPanel';
 import styled, { keyframes } from 'styled-components';
 import mars from './../mars.png';
 import saturn from './../saturn2.png';
+import pluto from './../pluto.png';
 
 const rotate360 = keyframes`
   from {
@@ -24,17 +25,17 @@ const Planet = styled.div`
   animation: ${rotate360} ${props => (props.orbit ? props.orbit : '20s')} linear infinite;
 `;
 
-//background: #E77D11;
 const Mars = styled(Planet)`
   top: 30%;
   left: 30%;
-  transform-origin: 220px 220px;
+  transform-origin: 190px 190px;
   background: url(${mars});
   background-size: cover;
 `;
 
 const Pluto = styled(Planet)`
-  background-color: #063A9E;
+  background: url(${pluto});
+  background-size: cover;
   border-top: 70px;
   border: 0;
   width: 3rem;

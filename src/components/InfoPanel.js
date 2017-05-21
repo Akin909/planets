@@ -26,7 +26,10 @@ const InfoPanel = ({ position }) => {
 };
 
 InfoPanel.defaultProps = {
-  position: {}
+  position: {
+    x: 0,
+    y: 0,
+  },
 };
 
 InfoPanel.propTypes = {
