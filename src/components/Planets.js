@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './Planets.css';
+import InfoPanel from './InfoPanel';
 import styled, { keyframes } from 'styled-components';
 import mars from './../mars.png';
 import saturn from './../saturn2.png';
@@ -64,21 +65,49 @@ const Saturn = styled.img`
 
 const Space = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background: url('https://i.ytimg.com/vi/M2uBtg_PzKg/maxresdefault.jpg');
   background-size: cover;
 `;
 class Planets extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      toggleInfoPanel: false,
+      position: {
+        x: 0,
+        y: 0,
+      },
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(event) {
+    const { toggleInfoPanel } = this.state;
+    this.setState({
+      position: {
+        x: event.screenX,
+        y: event.screenY,
+        target: event.target.id,
+      },
+      toggleInfoPanel: !toggleInfoPanel,
+    });
   }
 
   render() {
     return (
       <Space>
-        <Mars orbit="50s" />
-        <Pluto orbit="100s" />
-        <Saturn src={saturn} orbit="200s" />
+        {this.state.toggleInfoPanel &&
+          <InfoPanel position={this.state.position} />}
+        <Mars id="Mars" orbit="50s" onClick={this.handleClick} />
+        <Pluto id="Pluto" orbit="100s" onClick={this.handleClick} />
+        <Saturn
+          id="Saturn"
+          src={saturn}
+          orbit="200s"
+          onClick={this.handleClick}
+        />
         <Sun />
       </Space>
     );
